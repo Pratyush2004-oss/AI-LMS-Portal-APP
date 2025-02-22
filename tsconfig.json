@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+, "app/index.jsx", "app/auth/signin.jsx", "app/auth/signup.jsx", "app/_layout.jsx", "configs/firebaseConfig.jsx", "constant/Colors.jsx", "constant/Option.jsx", "constant/Prompt.jsx"  ]
 }

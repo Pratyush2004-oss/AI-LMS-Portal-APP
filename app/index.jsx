@@ -1,21 +1,29 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Colors } from "../constant/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from "@/configs/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserDetailContext } from "@/context/UserdetailContext";
 
 export default function Index() {
-  const {setuserDetail} = useContext(UserDetailContext);
+  const { setuserDetail } = useContext(UserDetailContext);
+  const [loading, setloading] = useState(false);
   const router = useRouter();
   onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      const result = await getDoc(doc(db, "users", user.email));
-      setuserDetail(result.data());
-      router.replace("(tabs)/Home");
+    try {
+      setloading(true);
+      if (user) {
+        const result = await getDoc(doc(db, "users", user.email));
+        setuserDetail(result.data());
+        router.replace("(tabs)/Home");
+      }
+    } catch (error) {
+    }
+    finally {
+      setloading(false);
     }
   })
   return (
@@ -24,37 +32,46 @@ export default function Index() {
         source={require("../assets/images/landing.png")}
         style={styles.image}
       />
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>Welcome to Coaching Guru</Text>
-        <Text style={styles.description}>
-          Transform your ideas into engaging educational content, effortlessly
-          with AI!! 📚🤖{" "}
-        </Text>
-        <View style={styles.btnWrapper}>
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => router.push("/auth/signup")}
-          >
-            <Text style={styles.btnTxt}>Get Started</Text>
-            <Ionicons name="arrow-forward" size={24} color={Colors.PRIMARY} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.btn,
-              {
-                backgroundColor: Colors.PRIMARY,
-                borderColor: Colors.WHITE,
-                borderWidth: 1,
-              },
-            ]}
-            onPress={() => router.push("/auth/signin")}
-          >
-            <Text style={[styles.btnTxt, { color: Colors.WHITE }]}>
-              Already have an Account?
+      {
+        loading ? (
+          <View style={styles.textContainer}>
+            <ActivityIndicator size="large" color={Colors.WHITE} />
+            <Text style={styles.title}>Loading........</Text>
+          </View>
+        ) : (
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>Welcome to Coaching Guru</Text>
+            <Text style={styles.description}>
+              Transform your ideas into engaging educational content, effortlessly
+              with AI!! 📚🤖{" "}
             </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+            <View style={styles.btnWrapper}>
+              <TouchableOpacity
+                style={styles.btn}
+                onPress={() => router.push("/auth/signup")}
+              >
+                <Text style={styles.btnTxt}>Get Started</Text>
+                <Ionicons name="arrow-forward" size={24} color={Colors.PRIMARY} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.btn,
+                  {
+                    backgroundColor: Colors.PRIMARY,
+                    borderColor: Colors.WHITE,
+                    borderWidth: 1,
+                  },
+                ]}
+                onPress={() => router.push("/auth/signin")}
+              >
+                <Text style={[styles.btnTxt, { color: Colors.WHITE }]}>
+                  Already have an Account?
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        )
+      }
     </View>
   );
 }
@@ -62,6 +79,7 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.WHITE,
+    flex: 1,
   },
   image: {
     height: 300,

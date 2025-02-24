@@ -27,7 +27,7 @@ export default function Button({ text, type = 'fill', onPress, loading = false }
 
 const styles = StyleSheet.create({
   btn: {
-    padding: 15,
+    padding: 12,
     borderRadius: 10,
     alignItems: "center",
     flexDirection: "row",

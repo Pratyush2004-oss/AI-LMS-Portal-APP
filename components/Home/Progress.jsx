@@ -5,6 +5,14 @@ import { Ionicons } from '@expo/vector-icons'
 import { Colors } from '../../constant/Colors'
 import * as Progress from "react-native-progress";
 export default function ProgressDetail({ courseList }) {
+    const GetCompletedChapter = (course) => {
+        const completedChapter = course?.completedChapter?.length;
+        const perc = completedChapter / course?.chapters?.length;
+        return perc;
+    }
+    const getCompletedChapterLength = (course) => {
+        return course?.completedChapter?.length ?? 0;
+    }
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Progress</Text>
@@ -27,8 +35,8 @@ export default function ProgressDetail({ courseList }) {
                             </View>
                         </View>
                         <View style={styles.ProgressContainer}>
-                            <Progress.Bar progress={1 / item.chapters.length} width={250} color={Colors.PRIMARY} />
-                            <Text style={{ fontFamily: 'outfit' }}>1 out of {item.chapters.length} Chapter Completed</Text>
+                            <Progress.Bar progress={GetCompletedChapter(item)} width={250} color={Colors.PRIMARY} />
+                            <Text style={{ fontFamily: 'outfit' }}>{ }{getCompletedChapterLength(item)} out of {item.chapters.length} Chapter Completed</Text>
                         </View>
                     </View>
                 )}
@@ -43,7 +51,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 25,
-        fontFamily: "outfit-bold"
+        fontFamily: "outfit-bold",
+        color: Colors.WHITE
     },
     CourseTitle: {
         fontSize: 19,
@@ -54,7 +63,7 @@ const styles = StyleSheet.create({
         width: 175
     },
     itemWrapper: {
-        backgroundColor: Colors.BG_GRAY,
+        backgroundColor: Colors.WHITE,
         borderRadius: 15,
         paddingVertical: 5,
         paddingHorizontal: 10,

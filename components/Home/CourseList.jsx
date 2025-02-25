@@ -14,10 +14,9 @@ export default function CourseList({ courseList }) {
                 data={courseList}
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item, index }) => (
                     <TouchableOpacity onPress={() => router.push({
-                        pathname: "/courseView",
+                        pathname: `/courseView/${item.docId}`,
                         params: {
                             courseParams: JSON.stringify(item)
                         }

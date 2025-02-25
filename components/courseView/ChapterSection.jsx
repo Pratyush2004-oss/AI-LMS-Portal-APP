@@ -1,9 +1,11 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Colors } from '../../constant/Colors'
 import ChapterCard from './ChapterCard'
+import { useRouter } from 'expo-router'
 
 export default function ChapterSection({ course }) {
+    const router = useRouter();
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Chapters</Text>
@@ -11,7 +13,7 @@ export default function ChapterSection({ course }) {
             <FlatList
                 data={course.chapters}
                 renderItem={({ item, index }) => (
-                    <ChapterCard key={index} chapter={item} index={index+1} />
+                    <ChapterCard chapter={item} index={index + 1} docId={course.docId} completed={JSON.stringify(course.completedChapter)} />
                 )}
             />
         </View>

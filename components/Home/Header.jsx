@@ -2,6 +2,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useContext } from 'react'
 import { UserDetailContext } from '../../context/UserdetailContext'
 import { Ionicons } from '@expo/vector-icons';
+import { Colors } from '../../constant/Colors';
 export default function Header() {
   const { userDetail, setUserDetail } = useContext(UserDetailContext);
   return userDetail && (
@@ -11,7 +12,7 @@ export default function Header() {
         <Text style={styles.subTitle}>Let's Get Started</Text>
       </View>
       <TouchableOpacity>
-        <Ionicons name='settings-outline' size={35} color="black" />
+        <Ionicons name='settings-outline' size={35} color={Colors.WHITE} />
       </TouchableOpacity>
     </View>
   )
@@ -25,10 +26,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "outfit-bold",
-    fontSize: 30
+    fontSize: 30,
+    color: Colors.WHITE
   },
   subTitle: {
     fontSize: 20,
-    fontFamily: "outfit"
+    fontFamily: "outfit",
+    color: Colors.WHITE
   }
 })

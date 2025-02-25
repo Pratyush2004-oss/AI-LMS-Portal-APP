@@ -53,8 +53,10 @@ export default function AddCourse() {
             const courses = resp.courses;
             if (courses) {
                 courses.forEach(async (course) => {
-                    await setDoc(doc(db, "Courses", Date.now().toString()), {
+                    const docId = Date.now().toString();
+                    await setDoc(doc(db, "Courses", docId), {
                         ...course,
+                        docId: docId,
                         createdAt: Date.now(),
                         createdBy: userDetail.email
                     });

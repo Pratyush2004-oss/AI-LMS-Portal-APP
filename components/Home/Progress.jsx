@@ -4,6 +4,7 @@ import { imageAssets } from '../../constant/Option'
 import { Ionicons } from '@expo/vector-icons'
 import { Colors } from '../../constant/Colors'
 import * as Progress from "react-native-progress";
+import ProgressCard from '../Shared/ProgressCard'
 export default function ProgressDetail({ courseList }) {
     const GetCompletedChapter = (course) => {
         const completedChapter = course?.completedChapter?.length;
@@ -22,23 +23,7 @@ export default function ProgressDetail({ courseList }) {
                 showsHorizontalScrollIndicator={false}
                 data={courseList}
                 renderItem={({ item, index }) => (
-                    <View key={index} style={styles.itemWrapper}>
-                        <View style={styles.imageWrapper}>
-                            <Image source={imageAssets[item.banner_image]} style={styles.image} />
-                            <View style={styles.titleContainer}>
-                                <Text style={styles.CourseTitle} numberOfLines={2}>{item.courseTitle}</Text>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
-                                    <Ionicons name="book-outline" size={17} color="black" />
-                                    <Text style={{ fontFamily: 'outfit' }}>
-                                        {item.chapters.length} Chapters</Text>
-                                </View>
-                            </View>
-                        </View>
-                        <View style={styles.ProgressContainer}>
-                            <Progress.Bar progress={GetCompletedChapter(item)} width={250} color={Colors.PRIMARY} />
-                            <Text style={{ fontFamily: 'outfit' }}>{ }{getCompletedChapterLength(item)} out of {item.chapters.length} Chapter Completed</Text>
-                        </View>
-                    </View>
+                    <ProgressCard item={item} course={item} />
                 )}
             />
         </View>

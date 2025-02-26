@@ -32,8 +32,8 @@ export default function quizSummary() {
             data={[]}
             ListHeaderComponent={
                 <View>
-                    <Image source={require('../../../assets/images/wave.png')} style={{ width: '100%', height: 700 }} />
-                    <View style={{ position: 'absolute', padding: 35, width: "100%" }}>
+                    <Image source={require('../../../assets/images/wave.png')} style={{ width: '100%', height: 700, position: 'absolute' }} />
+                    <View style={{ padding: 35, width: "100%" }}>
                         <Text style={{
                             fontSize: 30, fontFamily: 'outfit-bold', color: Colors.WHITE, textAlign: 'center'
                         }}>Quiz Summary</Text>
@@ -60,7 +60,7 @@ export default function quizSummary() {
 
                         </View>
                         <View style={{ alignItems: 'center', marginTop: 20 }}>
-                            <Button text={'Back to Home'} onPress={() => router.replace('/(tabs)/home')} type="fill" />
+                            <Button text={'Back to Home'} onPress={() => router.replace('/(tabs)/Home')} type="fill" />
                         </View>
                         <View style={{ marginTop: 25, flex: 1 }}>
                             <Text style={{ fontSize: 20, fontFamily: 'outfit-bold', color: Colors.BLACK }}>Summary</Text>

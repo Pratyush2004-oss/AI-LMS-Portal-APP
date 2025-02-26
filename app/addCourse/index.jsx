@@ -58,6 +58,7 @@ export default function AddCourse() {
                         ...course,
                         docId: docId,
                         createdAt: Date.now(),
+                        createdOn: new Date(),
                         createdBy: userDetail.email
                     });
                 })

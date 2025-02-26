@@ -1,10 +1,10 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import * as Progress from 'react-native-progress'
 import { imageAssets } from '../../constant/Option'
 import { Colors } from '../../constant/Colors'
-export default function ProgressCard({ item, course }) {
+export default function ProgressCard({ item, width = 275 }) {
     const getCompletedChapterLength = (course) => {
         return course?.completedChapter?.length ?? 0;
     }
@@ -14,7 +14,7 @@ export default function ProgressCard({ item, course }) {
         return perc;
     }
     return (
-        <View style={styles.itemWrapper}>
+        <View style={[styles.itemWrapper, { width: width }]}>
             <View style={styles.imageWrapper}>
                 <Image source={imageAssets[item.banner_image]} style={styles.image} />
                 <View style={styles.titleContainer}>
@@ -27,7 +27,7 @@ export default function ProgressCard({ item, course }) {
                 </View>
             </View>
             <View style={styles.ProgressContainer}>
-                <Progress.Bar progress={GetCompletedChapter(item)} width={250} color={Colors.PRIMARY} />
+                <Progress.Bar progress={GetCompletedChapter(item)} width={width - 30} color={Colors.PRIMARY} />
                 <Text style={{ fontFamily: 'outfit' }}>{ }{getCompletedChapterLength(item)} out of {item.chapters.length} Chapter Completed</Text>
             </View>
         </View>
@@ -41,14 +41,13 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap'
     },
     titleContainer: {
-        width: 175
+        flex: 1
     },
     itemWrapper: {
         backgroundColor: Colors.WHITE,
         borderRadius: 15,
         paddingVertical: 5,
         paddingHorizontal: 10,
-        width: 275,
         marginRight: 10
     },
     imageWrapper: {

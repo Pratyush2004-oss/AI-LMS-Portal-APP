@@ -42,7 +42,7 @@ export const ProfileMenu = [
     {
         name: 'My Course',
         icon: 'book', //Ionic Icons 
-        path: '/(tabs)/home'
+        path: '/(tabs)/Home'
     },
     {
         name: 'Course Progress',

@@ -4,11 +4,17 @@ import { imageAssets } from '../../constant/Option'
 import { Colors } from '../../constant/Colors'
 import { Ionicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
-export default function CourseList({ courseList }) {
+export default function CourseList({ courseList, category = 'Courses', enroll = false }) {
     const router = useRouter();
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Courses</Text>
+            {
+                category && (
+                    <Text style={[styles.title, {
+                        fontSize: category == "Courses" ? 25 : 20
+                    }]}>{category}</Text>
+                )
+            }
             <FlatList
                 style={styles.courseContainer}
                 data={courseList}
@@ -18,7 +24,8 @@ export default function CourseList({ courseList }) {
                     <TouchableOpacity onPress={() => router.push({
                         pathname: `/courseView/${item.docId}`,
                         params: {
-                            courseParams: JSON.stringify(item)
+                            courseParams: JSON.stringify(item),
+                            enroll
                         }
                     })} key={index} style={styles.itemContainer}>
                         <Image source={imageAssets[item.banner_image]} style={styles.image} />

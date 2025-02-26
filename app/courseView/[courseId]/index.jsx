@@ -8,7 +8,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../configs/firebaseConfig';
 
 export default function courseView() {
-    const { courseParams, courseId } = useLocalSearchParams();
+    const { courseParams, courseId, enroll } = useLocalSearchParams();
     const [course, setcourse] = useState();
     useEffect(() => {
         if (!courseParams) {
@@ -28,7 +28,7 @@ export default function courseView() {
             data={[]}
             ListHeaderComponent={
                 <View style={styles.container}>
-                    <Intro course={course} />
+                    <Intro course={course} enroll={enroll} />
                     <ChapterSection course={course} />
                 </View>
             }

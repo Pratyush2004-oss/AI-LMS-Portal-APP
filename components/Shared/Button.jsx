@@ -8,7 +8,6 @@ export default function Button({ text, type = 'fill', onPress, loading = false }
     disabled={loading}
       style={[styles.btn, {
         backgroundColor: type === 'fill' && Colors.PRIMARY,
-        borderColor: type === 'fill' ? Colors.PRIMARY : Colors.PRIMARY,
         borderWidth: type === 'fill' ? 0 : 1
       }]}>
       {
@@ -33,7 +32,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 10,
     justifyContent: "center",
-    width: "100%"
+    width: "100%",
+    borderColor: Colors.PRIMARY
   },
   btnTxt: {
     fontSize: 18,

@@ -7,5 +7,5 @@ export const Colors = {
     GREEN: '#24b351',
     LIGHT_GREEN: '#dbffdd',
     RED: '#f51c0c',
-    LIGHT_RED: '#ffc8c4'
+    LIGHT_RED: '#ffc8c4',
 }

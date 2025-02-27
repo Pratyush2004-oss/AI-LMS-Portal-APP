@@ -1,4 +1,4 @@
-import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Colors } from "../constant/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -9,9 +9,10 @@ import { useContext, useState } from "react";
 import { UserDetailContext } from "@/context/UserdetailContext";
 
 export default function Index() {
-  const { setuserDetail } = useContext(UserDetailContext);
+  const { userDetail, setuserDetail } = useContext(UserDetailContext);
   const [loading, setloading] = useState(false);
   const router = useRouter();
+
   onAuthStateChanged(auth, async (user) => {
     try {
       setloading(true);
@@ -21,6 +22,7 @@ export default function Index() {
         router.replace("(tabs)/Home");
       }
     } catch (error) {
+      console.log(error);
     }
     finally {
       setloading(false);
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 300,
-    width: "100%",
+    width: Dimensions.get('screen').width,
     borderRadius: 10,
     marginTop: 70,
   },

@@ -11,10 +11,10 @@ export default function FlashCard() {
   const flashCards = course.flashcards;
   const router = useRouter();
   const [currentPage, setcurrentPage] = useState(0);
-  const width = Dimensions.get('screen').width;
+  const width = Dimensions.get('screen').width * 0.78;
 
   const onScroll = (event) => {
-    const index = Math.round(event.nativeEvent.contentOffset.x / width);
+    const index = Math.floor(event.nativeEvent.contentOffset.x / width);
     setcurrentPage(index);
   }
 
@@ -27,11 +27,11 @@ export default function FlashCard() {
     <View>
       <Image source={require('../../assets/images/wave.png')} style={styles.wave} />
       <View style={{ width: '100%', padding: 20 }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 20 }}>
           <Pressable onPress={() => router.back()}>
             <Ionicons name="arrow-back" size={35} color={Colors.WHITE} />
           </Pressable>
-          <Text style={{ color: Colors.WHITE, fontSize: 25, fontFamily: 'outfit-bold' }}>{currentPage + 1} / {flashCards.length}</Text>
+          <Text style={{ color: Colors.WHITE, fontSize: 25, fontFamily: 'outfit-bold' }}>Flash Cards</Text>
         </View>
         <View style={{ marginTop: 20 }}>
           <Progress.Bar progress={getProgress(currentPage)} width={Dimensions.get('screen').width * 0.85} color={Colors.LIGHT_GREEN} />
@@ -46,7 +46,8 @@ export default function FlashCard() {
             <View key={index} style={{ height: 500, marginTop: 50 }}>
               <FlipCard style={styles.flipCard}>
                 <View style={styles.face}>
-                  <Text style={styles.faceText}>{item.front}</Text>
+                  <Text style={{ position: 'absolute', top: 20, right: 30, color: Colors.WHITE, fontFamily: "outfit-bold", fontSize: 16 }}>{index + 1}</Text>
+                  <Text style={styles.faceText}>{item.front} </Text>
                 </View>
                 <View style={styles.back}>
                   <Text style={styles.backTxt}>{item.back}</Text>

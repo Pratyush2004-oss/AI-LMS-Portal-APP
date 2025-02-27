@@ -16,7 +16,7 @@ export default function home() {
 
   useEffect(() => {
     userDetail && GetCourseList();
-  }, [userDetail]);
+  }, []);
 
   const GetCourseList = async () => {
     setloading(true);

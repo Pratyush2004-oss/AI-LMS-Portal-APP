@@ -18,7 +18,6 @@ export const PraticeOption = [
         icon: require('./../assets/images/qa.png'),
         path: '/questionAnswer'
 
-
     }
 ]
 
@@ -28,6 +27,7 @@ export const imageAssets = {
     '/banner3.png': require('./../assets/images/banner3.png'),
     '/banner4.png': require('./../assets/images/banner4.png'),
     '/banner5.png': require('./../assets/images/banner5.png'),
+    '/banner6.png': require('./../assets/images/banner6.png'),
 
 };
 
@@ -45,14 +45,15 @@ export const ProfileMenu = [
         path: '/(tabs)/Home'
     },
     {
-        name: 'Course Progress',
-        icon: 'analytics-outline', //Ionic Icons 
-        path: '/(tabs)/progress'
+        name: "Explore",
+        icon: "search-outline",
+        path: "/(tabs)/Explore"
+
     },
     {
-        name: 'My Subscription',
-        icon: 'shield-checkmark', //Ionic Icons 
-        path: ''
+        name: 'Course Progress',
+        icon: 'analytics-outline', //Ionic Icons 
+        path: '/(tabs)/Progress'
     },
     {
         name: 'Logout',

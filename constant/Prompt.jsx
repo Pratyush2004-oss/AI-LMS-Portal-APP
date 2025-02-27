@@ -16,9 +16,9 @@ export default {
     - List Content in each chapter along with Description in 5 to 8 lines
     - Do not Just Explain what chapter about, Explain in Detail with Example
     - Also Make Easy, Moderate and Advance Course depends on topics
-    - Add CourseBanner Image from ('/banner1.png','/banner2.png','/banner3.png','/banner4.png','/banner5.png','/banner6.png'), select It randomly
+    - Add CourseBanner Image from ('/banner1.png','/banner2.png','/banner3.png','/banner4.png','/banner5.png'.'/banner6.png'), select It randomly
     - Explain the chapter content as detailed tutorial with list of content
-    - Generate 10 Quizz, 10 Flashcard and 10 Questions answer
+    - Generate 10 Quiz, 10 Flashcard and 10 Questions answer
     - Tag each course to one of the categorty from :["Tech & Coding","Business & Finance","Health & Fitness","Science & Engineering","Arts & Creativity"]
     - Output in JSON Format only 
     -  "courses": [

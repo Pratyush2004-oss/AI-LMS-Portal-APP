@@ -36,22 +36,24 @@ export default function Progress() {
       />
       <View style={{ padding: 20, marginTop: 20, gap: 20 }}>
         <Text style={styles.title}>Course Progress</Text>
-        <FlatList
-          refreshing={loading}
-          onRefresh={() => GetCourseList()}
-          data={courseList}
-          showsVerticalScrollIndicator={false}
-          renderItem={({ item, index }) => (
-            <TouchableOpacity key={index} style={{ marginBottom: 20 }} onPress={() => router.push({
-              pathname: `/courseView/${item.docId}`,
-              params: {
-                courseParams: JSON.stringify(item)
-              }
-            })} >
-              <ProgressCard item={item} width={'97%'} />
-            </TouchableOpacity>
-          )}
-        />
+        <View style={{ paddingBottom: 150 }}>
+          <FlatList
+            refreshing={loading}
+            onRefresh={() => GetCourseList()}
+            data={courseList}
+            showsVerticalScrollIndicator={false}
+            renderItem={({ item, index }) => (
+              <TouchableOpacity key={index} style={{ marginBottom: 20 }} onPress={() => router.push({
+                pathname: `/courseView/${item.docId}`,
+                params: {
+                  courseParams: JSON.stringify(item)
+                }
+              })} >
+                <ProgressCard item={item} width={'97%'} />
+              </TouchableOpacity>
+            )}
+          />
+        </View>
       </View>
 
     </View>

@@ -30,7 +30,7 @@ export default function home() {
     });
     setloading(false);
   }
-  return (
+  return userDetail && courseList && (
     <FlatList
       data={[]}
       onRefresh={() => GetCourseList()}
